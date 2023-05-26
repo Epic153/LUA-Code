@@ -6,7 +6,7 @@ screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 -- Create a Frame to hold the UI elements
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 250, 0, 200)
-frame.Position = UDim2.new(0.5, -125, 0.5, -100)
+frame.Position = UDim2.new(0.5, 125, 0.5, -100) -- Updated position
 frame.BackgroundTransparency = 0.7
 frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
 frame.BorderSizePixel = 0
