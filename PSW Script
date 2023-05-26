@@ -1,1 +1,116 @@
+--If the script have issue DM Trần Henry#7944
 
+-- Create a ScreenGui to hold the UI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "UI"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Create a Frame to hold the script names
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 220) -- Adjusted size to accommodate the content
+frame.Position = UDim2.new(0.5, -125, 0.5, -110)
+frame.BackgroundTransparency = 0.5
+frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+frame.BorderSizePixel = 0 -- Remove border
+frame.Parent = screenGui
+
+-- Create a label indicating the creator
+local creatorLabel = Instance.new("TextLabel")
+creatorLabel.Text = "This UI made by Trần Henry"
+creatorLabel.Size = UDim2.new(1, 0, 0, 30)
+creatorLabel.BackgroundTransparency = 1
+creatorLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+creatorLabel.TextSize = 18
+creatorLabel.Font = Enum.Font.SourceSansBold
+creatorLabel.Parent = frame
+
+-- Create a function to open the script when clicked
+local function openScript(scriptUrl)
+    loadstring(game:HttpGet(scriptUrl, true))()
+end
+
+-- Create a table to hold the script names and URLs
+local scripts = {
+    { Name = "Faded Hub", URL = "https://raw.githubusercontent.com/NighterEpic/Faded/main/YesEpic" },
+    { Name = "Simple Spy V1", URL = "https://github.com/exxtremestuffs/SimpleSpySource/raw/master/SimpleSpy.lua" },
+    { Name = "Project WD", URL = "https://raw.githubusercontent.com/Muhammad6196/Project-WD/main/Mainstring.lua" },
+    { Name = "Join Discord", URL = "https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/README.md" }
+}
+
+-- Create a UI layout to organize the buttons
+local layout = Instance.new("UIListLayout")
+layout.Padding = UDim.new(0, 10) -- Add some spacing between buttons
+layout.SortOrder = Enum.SortOrder.LayoutOrder
+layout.Parent = frame
+
+-- Function to toggle the UI visibility
+local function toggleUIVisibility()
+    frame.Visible = not frame.Visible
+end
+
+-- Connect the "B" key to toggle the UI visibility
+game:GetService("UserInputService").InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.B then
+        toggleUIVisibility()
+    end
+end)
+
+-- Variables to track mouse movement
+local isDragging = false
+local mouseStartPosition
+local frameStartPosition
+
+-- Function to handle mouse dragging
+local function handleMouseDrag(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then
+        isDragging = true
+        mouseStartPosition = input.Position
+        frameStartPosition = frame.Position
+    end
+end
+
+-- Function to handle mouse release
+local function handleMouseRelease(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then
+        isDragging = false
+    end
+end
+
+-- Function to handle mouse movement
+local function handleMouseMove(input)
+    if isDragging then
+        local delta = input.Position - mouseStartPosition
+        frame.Position = UDim2.new(
+            frameStartPosition.X.Scale,
+            frameStartPosition.X.Offset + delta.X,
+            frameStartPosition.Y.Scale,
+            frameStartPosition.Y.Offset + delta.Y
+        )
+    end
+end
+
+-- Connect mouse events to functions
+game:GetService("UserInputService").InputChanged:Connect(handleMouseDrag)
+game:GetService("UserInputService").InputEnded:Connect(handleMouseRelease)
+game:GetService("UserInputService").InputChanged:Connect(handleMouseMove)
+
+-- Loop through the scripts and create TextButtons for their names
+for index, scriptData in ipairs(scripts) do
+    local textButton = Instance.new("TextButton")
+    textButton.Text = scriptData.Name
+    textButton.Size = UDim2.new(1, 0, 0, 40)
+    textButton.BackgroundTransparency = 0.8
+    textButton.BackgroundColor3 = Color3.fromRGB(70, 130, 180) -- Adjusted background color
+    textButton.BorderSizePixel = 0
+    textButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    textButton.TextSize = 14
+    textButton.Font = Enum.Font.SourceSans
+    textButton.LayoutOrder = index -- Maintain the order of buttons
+    textButton.Parent = frame
+
+    -- Connect the button to open the script when clicked
+    textButton.MouseButton1Click:Connect(function()
+        openScript(scriptData.URL)
+    end)
+end
+print("If the script have issue DM Trần Henry#7944")
