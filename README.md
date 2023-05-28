@@ -60,7 +60,7 @@ closeButton.Parent = frame
 
 -- Function to copy the Discord link to the clipboard
 local function copyToClipboard()
-    local Clipboard = require(game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Clipboard"))
+    local Clipboard = require(game:GetService("Players").LocalPlayer:WaitForChild("Clipboard"))
     Clipboard.set("https://discord.gg/ns3HNnxGU3")
     print("Discord link copied to clipboard!")
 end
