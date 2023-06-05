@@ -1,0 +1,73 @@
+local Key = "2s4rq1fb6" -- The expected key
+
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+
+-- Create the UI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KeySystemUI"
+ScreenGui.Parent = playerGui
+
+local Frame = Instance.new("Frame")
+Frame.Name = "MainFrame"
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+Frame.BackgroundTransparency = 0
+Frame.BackgroundColor3 = Color3.fromRGB(200, 200, 200) -- Set background color to light gray
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+
+-- Create rounded corners for the main frame
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0, 10)
+Corner.Parent = Frame
+
+local Title = Instance.new("TextLabel")
+Title.Name = "TitleLabel"
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.BackgroundColor3 = Color3.new(0, 0, 0) -- Changed color to black
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 20
+Title.Text = "Script Hub Key System"
+Title.Parent = Frame
+
+local TextBox = Instance.new("TextBox")
+TextBox.Name = "KeyTextBox"
+TextBox.Size = UDim2.new(0.8, 0, 0, 32)
+TextBox.Position = UDim2.new(0.1, 0, 0.35, 0)
+TextBox.BackgroundColor3 = Color3.new(1, 1, 1)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.TextSize = 16
+TextBox.PlaceholderText = "Enter Key"
+TextBox.Parent = Frame
+
+-- Create rounded corners for the text box
+local TextBoxCorner = Instance.new("UICorner")
+TextBoxCorner.CornerRadius = UDim.new(0, 10)
+TextBoxCorner.Parent = TextBox
+
+local SubmitButton = Instance.new("TextButton")
+SubmitButton.Name = "SubmitButton"
+SubmitButton.Size = UDim2.new(0.4, 0, 0, 32)
+SubmitButton.Position = UDim2.new(0.3, 0, 0.6, 0)
+SubmitButton.BackgroundColor3 = Color3.new(0, 0.7, 0)
+SubmitButton.TextColor3 = Color3.new(1, 1, 1)
+SubmitButton.Font = Enum.Font.SourceSansBold
+SubmitButton.TextSize = 18
+SubmitButton.Text = "Submit"
+SubmitButton.Parent = Frame
+
+SubmitButton.MouseButton1Click:Connect(function()
+    local enteredKey = TextBox.Text
+
+    if enteredKey == Key then
+        -- Key is correct, execute the script
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/PSW%20Script"))()
+        ScreenGui:Destroy()
+    else
+        -- Key is incorrect, kick the player
+        player:Kick("Wrong password")
+    end
+end)
