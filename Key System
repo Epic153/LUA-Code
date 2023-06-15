@@ -17,7 +17,6 @@ Frame.BackgroundColor3 = Color3.fromRGB(200, 200, 200) -- Set background color t
 Frame.BorderSizePixel = 0
 Frame.Parent = ScreenGui
 
-
 -- Create rounded corners for the main frame
 local Corner = Instance.new("UICorner")
 Corner.CornerRadius = UDim.new(0, 10)
@@ -59,6 +58,17 @@ SubmitButton.TextSize = 18
 SubmitButton.Text = "Submit"
 SubmitButton.Parent = Frame
 
+local GetKeyButton = Instance.new("TextButton")
+GetKeyButton.Name = "GetKeyButton"
+GetKeyButton.Size = UDim2.new(0.4, 0, 0, 32)
+GetKeyButton.Position = UDim2.new(0.3, 0, 0.75, 0)
+GetKeyButton.BackgroundColor3 = Color3.new(0, 0.5, 0.7)
+GetKeyButton.TextColor3 = Color3.new(1, 1, 1)
+GetKeyButton.Font = Enum.Font.SourceSansBold
+GetKeyButton.TextSize = 18
+GetKeyButton.Text = "Get Key"
+GetKeyButton.Parent = Frame
+
 SubmitButton.MouseButton1Click:Connect(function()
     local enteredKey = TextBox.Text
 
@@ -70,4 +80,11 @@ SubmitButton.MouseButton1Click:Connect(function()
         -- Key is incorrect, kick the player
         player:Kick("Wrong password")
     end
+end)
+
+GetKeyButton.MouseButton1Click:Connect(function()
+    -- Put your code here for handling the "Get Key" button click
+    local keyUrl = "https://raw.githubusercontent.com/Epic153/Keyhere/main/Key"
+         setclipboard(keyUrl)
+    print("Key URL copied to clipboard:", keyUrl)
 end)
