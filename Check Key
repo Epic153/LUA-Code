@@ -1,0 +1,46 @@
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 50)
+frame.Position = UDim2.new(1, -220, 1, -70)
+frame.BackgroundTransparency = 0.5
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+frame.Parent = screenGui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 10)
+corner.Parent = frame
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Size = UDim2.new(1, 0, 1, 0)
+textLabel.BackgroundTransparency = 1
+textLabel.Text = "Check Key, Please wait!"
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextSize = 18
+textLabel.Font = Enum.Font.SourceSansBold
+textLabel.Parent = frame
+
+local function fadeOut()
+	local transparency = frame.BackgroundTransparency
+	while transparency < 1 do
+		transparency = transparency + 0.05
+		frame.BackgroundTransparency = transparency
+		textLabel.TextTransparency = transparency
+		wait(0.1)
+	end
+	screenGui:Destroy()
+end
+
+local function updatePosition()
+	local screenSize = workspace.CurrentCamera.ViewportSize
+	frame.Position = UDim2.new(1, -frame.Size.X.Offset - 20, 1, -frame.Size.Y.Offset - 20)
+end
+
+updatePosition()
+
+workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(updatePosition)
+
+wait(5)
+fadeOut()
