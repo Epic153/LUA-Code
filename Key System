@@ -86,5 +86,6 @@ GetKeyButton.MouseButton1Click:Connect(function()
     -- Put your code here for handling the "Get Key" button click
     local keyUrl = "https://raw.githubusercontent.com/Epic153/Keyhere/main/Key"
          setclipboard(keyUrl)
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/Link%20Ui"))()
     print("Key URL copied to clipboard:", keyUrl)
 end)
