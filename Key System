@@ -13,7 +13,7 @@ Frame.Name = "MainFrame"
 Frame.Size = UDim2.new(0, 300, 0, 200)
 Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
 Frame.BackgroundTransparency = 0
-Frame.BackgroundColor3 = Color3.fromRGB(200, 200, 200) -- Set background color to light gray
+Frame.BackgroundColor3 = Color3.fromRGB(34, 34, 34) -- Changed background color to a dark gray
 Frame.BorderSizePixel = 0
 Frame.Parent = ScreenGui
 
@@ -25,9 +25,10 @@ Corner.Parent = Frame
 local Title = Instance.new("TextLabel")
 Title.Name = "TitleLabel"
 Title.Size = UDim2.new(1, 0, 0, 40)
-Title.BackgroundColor3 = Color3.new(0, 0, 0) -- Changed color to black
+Title.BackgroundColor3 = Color3.new(0, 0, 0)
+Title.BackgroundTransparency = 0.5
 Title.TextColor3 = Color3.new(1, 1, 1)
-Title.Font = Enum.Font.SourceSansBold
+Title.Font = Enum.Font.GothamBold
 Title.TextSize = 20
 Title.Text = "Script Hub Key System"
 Title.Parent = Frame
@@ -37,7 +38,7 @@ TextBox.Name = "KeyTextBox"
 TextBox.Size = UDim2.new(0.8, 0, 0, 32)
 TextBox.Position = UDim2.new(0.1, 0, 0.35, 0)
 TextBox.BackgroundColor3 = Color3.new(1, 1, 1)
-TextBox.Font = Enum.Font.SourceSans
+TextBox.Font = Enum.Font.Gotham
 TextBox.TextSize = 16
 TextBox.PlaceholderText = "Enter Key"
 TextBox.Parent = Frame
@@ -51,9 +52,9 @@ local SubmitButton = Instance.new("TextButton")
 SubmitButton.Name = "SubmitButton"
 SubmitButton.Size = UDim2.new(0.4, 0, 0, 32)
 SubmitButton.Position = UDim2.new(0.3, 0, 0.6, 0)
-SubmitButton.BackgroundColor3 = Color3.new(0, 0.7, 0)
+SubmitButton.BackgroundColor3 = Color3.new(0, 0.8, 0)
 SubmitButton.TextColor3 = Color3.new(1, 1, 1)
-SubmitButton.Font = Enum.Font.SourceSansBold
+SubmitButton.Font = Enum.Font.GothamBold
 SubmitButton.TextSize = 18
 SubmitButton.Text = "Submit"
 SubmitButton.Parent = Frame
@@ -64,7 +65,7 @@ GetKeyButton.Size = UDim2.new(0.4, 0, 0, 32)
 GetKeyButton.Position = UDim2.new(0.3, 0, 0.75, 0)
 GetKeyButton.BackgroundColor3 = Color3.new(0, 0.5, 0.7)
 GetKeyButton.TextColor3 = Color3.new(1, 1, 1)
-GetKeyButton.Font = Enum.Font.SourceSansBold
+GetKeyButton.Font = Enum.Font.GothamBold
 GetKeyButton.TextSize = 18
 GetKeyButton.Text = "Get Key"
 GetKeyButton.Parent = Frame
@@ -85,7 +86,7 @@ end)
 GetKeyButton.MouseButton1Click:Connect(function()
     -- Put your code here for handling the "Get Key" button click
     local keyUrl = "https://raw.githubusercontent.com/Epic153/Keyhere/main/Key"
-         setclipboard(keyUrl)
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/Link%20Ui"))()
+    setclipboard(keyUrl)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/Link%20Ui"))()
     print("Key URL copied to clipboard:", keyUrl)
 end)
