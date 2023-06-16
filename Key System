@@ -74,8 +74,15 @@ SubmitButton.MouseButton1Click:Connect(function()
     local enteredKey = TextBox.Text
 
     if enteredKey == Key then
-        -- Key is correct, execute the script
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/PSW%20Script"))()
+        -- Key is correct, execute the scripts
+        spawn(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/Check%20Key"))()
+            wait(2)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Epic153/Join-Discord-project/main/PSW%20Script"))()
+        end)
+
+        -- Delay the destruction of the ScreenGui
+        wait(3)
         ScreenGui:Destroy()
     else
         -- Key is incorrect, kick the player
